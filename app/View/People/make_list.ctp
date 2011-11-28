@@ -14,3 +14,5 @@
   </tr>
   <?php endforeach; ?>
 </table>
+
+<?php print $this->Html->Link('Edit People and who they are allowed to give gifts to', array('controller' => 'people', 'action' => 'index')); ?>
