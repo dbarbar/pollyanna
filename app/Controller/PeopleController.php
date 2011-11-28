@@ -28,9 +28,17 @@ class PeopleController extends AppController {
     
     $done = array();
     $gets = array();
+    $possible_choices = array();
+    $original_number_of_possible_choices = array();
     // $gets[a] gets a gift for => b
     foreach ($sort as $id => $combos) {
+      $original_number_of_possible_choices[$people[$id]['name']] = count($people[$id]['recipients']);
       $choices = array_diff($people[$id]['recipients'], $done);
+      $named_choices = array();
+      foreach ($choices as $choice) {
+        $named_choices[] = $people[$choice]['name'];
+      }
+      $possible_choices[$people[$id]['name']] = $named_choices;
       if (count($choices) == 0) {
         $gets = array();
         break;
@@ -39,7 +47,9 @@ class PeopleController extends AppController {
       $gets[$people[$id]['name']] = $people[$final_choice]['name'];
       $done[] = $final_choice;
     }
-    
+
+    $this->Set('original_number_of_possible_choices', $original_number_of_possible_choices);
+    $this->Set('possible_choices', $possible_choices);
     $this->Set('results', $gets);
   }
 }
