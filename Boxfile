@@ -1,0 +1,15 @@
+web1: #component type & number
+  name: cake #component settings
+  document_root: app/webroot
+  shared_writable_dirs:
+    - app/tmp/logs
+    - app/tmp/cache
+    - app/tmp/sessions
+    - app/tmp/tests
+  php_extensions:
+    - mcrypt
+    - mysqli
+    - mbstring
+    - pdo_mysql #required for versions 2.x+
+    - apc
+
